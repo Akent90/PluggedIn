@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Playlist } = require('../models');
+const { Playlist, Comment, Likes, User } = require('../models');
 const withAuth = require('../utils/auth'); 
 
 // GET home page with mood-based playlists
@@ -55,7 +55,7 @@ router.get('/playlists/:mood', withAuth, async (req, res) => {
                 },
                 { 
                     model: Likes,
-                    as: 'likes'
+                    as: 'likes',
                     // Space to include additional user information for likes, add another include here
                 },
                 {

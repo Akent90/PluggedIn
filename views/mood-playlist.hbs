@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{mood}} Playlists</title>
+    <!-- Add your stylesheet links here -->
+</head>
+<body>
+    <header>
+        <!-- Your site navigation -->
+    </header>
+
+    <main>
+        <h1>{{mood}} Playlists</h1>
+        {{#each playlists}}
+        <div class="playlist">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <iframe src="{{this.embedUrl}}" width="100%" height="300" frameborder="no" allow="autoplay"></iframe>
+            <!-- Display likes -->
+            <p>Likes: {{this.likes.length}}</p>
+            <!-- Comments section -->
+            <div class="comments">
+                <h3>Comments:</h3>
+                {{#each this.comments}}
+                <p><strong>{{this.user.username}}:</strong> {{this.text}}</p>
+                {{/each}}
+            </div>
+        </div>
+        {{else}}
+        <p>No playlists found for this mood.</p>
+        {{/each}}
+    </main>
+
+    <footer>
+        <!-- Your footer content -->
+    </footer>
+</body>
+</html>
