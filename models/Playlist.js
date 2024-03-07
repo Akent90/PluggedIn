@@ -25,6 +25,7 @@ Playlist.init({
     soundcloudUrl: {
         type: DataTypes.STRING, 
         allowNull: false, 
+        field: 'soundcloud_url',
         validate: {
             isUrl: true
         }
