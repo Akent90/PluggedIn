@@ -1,0 +1,8 @@
+.mood-box-link {
+    text-decoration: none; /* Removes the underline from links */
+    color: inherit; /* Keeps the text color the same as the non-link text */
+  }
+  
+  .mood-box {
+    cursor: pointer; /* Changes the cursor to a pointer to indicate clickability */
+  }
