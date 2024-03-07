@@ -2,11 +2,12 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const SequelizeStore = require('connect-session-sequelize')(session.Store); // Import SequelizeStore
 const sequelize = require('./config/connection'); 
 
 // Import route handlers
-const homeRoutes = require('./routes/homeRoutes');
-
+const apiRoutes = require('./controllers/api');
+const webRoutes = require('./controllers');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,7 +21,10 @@ const sess = {
     store: new SequelizeStore({
       db: sequelize,
     }),
-  };
+};
+
+// Middleware for session
+app.use(session(sess));
 
 // Handlebars setup
 app.engine('hbs', exphbs.engine({
@@ -37,7 +41,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Use routes
-app.use('/', homeRoutes);
+app.use('/api', apiRoutes); // API routes
+app.use('/', webRoutes);     // View routes
 
 // Sync sequelize models to the database, then start the server
 sequelize.sync({ force: false }).then(() => {

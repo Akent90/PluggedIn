@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const { Playlist, Comment, Likes, User } = require('../models');
-const withAuth = require('../utils/auth'); 
+const withAuth = require('../utils/auth');
 
 // GET home page with mood-based playlists
 router.get('/', withAuth, async (req, res) => {
     try {
         // Fetch playlists and categorize them based on mood
         const playlistData = await Playlist.findAll({
-            attributes: ['id', 'title', 'mood', 'description'],
+            attributes: ['id', 'title', 'mood', 'description', 'soundcloudUrl'], 
             order: [['mood', 'ASC']] // Sort by mood
         });
 
@@ -43,24 +43,23 @@ router.get('/playlists/:mood', withAuth, async (req, res) => {
         const playlistData = await Playlist.findAll({
             where: { mood: mood },
             include: [
-                { 
+                {
                     model: Comment,
                     as: 'comments',
                     include: [
                         {
                             model: User,
-                            attributes: ['username'] 
+                            attributes: ['username']
                         }
                     ]
                 },
-                { 
+                {
                     model: Likes,
                     as: 'likes',
-                    // Space to include additional user information for likes, add another include here
                 },
                 {
                     model: User,
-                    attributes: ['username'], 
+                    attributes: ['username'],
                     as: 'user'
                 }
             ]
@@ -69,7 +68,7 @@ router.get('/playlists/:mood', withAuth, async (req, res) => {
         const playlists = playlistData.map(playlist => playlist.get({ plain: true }));
 
         // Render a view for the specific mood, passing in the playlists for that mood
-        res.render('mood-playlist', { 
+        res.render('mood-playlist', {
             playlists,
             mood,
             loggedIn: req.session.loggedIn
