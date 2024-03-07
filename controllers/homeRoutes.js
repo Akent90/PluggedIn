@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Playlist, Comment, Likes, User } = require('../models');
-const withAuth = require('../utils/auth');
+const withAuth = require('../middleware/withAuth');
 
 // GET home page with mood-based playlists
 router.get('/', withAuth, async (req, res) => {

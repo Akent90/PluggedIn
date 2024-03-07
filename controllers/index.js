@@ -3,8 +3,8 @@ const router = express.Router();
 
 // Import controllers
 const homeRoutes = require('./homeRoutes');
-const commentController = require('./commentController');
-const likeController = require('./likeController');
+const commentController = require('./comment');
+const likeController = require('./like');
 
 // Mount routes
 router.use('/', homeRoutes);
