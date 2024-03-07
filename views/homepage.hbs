@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Mood Playlists</title>
+  <!-- Add links to your CSS files here -->
+</head>
+<body>
+  <header>
+    <!-- Navigation bar, potentially with login/logout and profile link -->
+  </header>
+
+  <main>
+    <h1>Welcome to Mood Playlists</h1>
+    <section id="mood-playlists">
+      <h2>Choose Your Mood:</h2>
+      <div class="mood-container">
+        <!-- Dynamically load mood boxes -->
+        {{#each moods}}
+        <div class="mood-box" data-mood="{{this}}">
+          <h3>{{this}}</h3>
+        </div>
+        {{/each}}
+      </div>
+    </section>
+  </main>
+
+  <script src="/js/moodSelection.js"></script> <!-- Your frontend JavaScript file to handle mood selection -->
+</body>
+</html>
