@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>{{mood}} Playlists</title>
     <!-- Add your stylesheet links here -->
+    <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
 </head>
 <body>
     <header>
@@ -16,6 +17,7 @@
         <div class="playlist">
             <h2>{{this.title}}</h2>
             <p>{{this.description}}</p>
+            <!-- Embed SoundCloud playlist using iframe -->
             <iframe src="{{this.soundcloudUrl}}" width="100%" height="300" frameborder="no" allow="autoplay"></iframe>
             <!-- Display likes -->
             <p>Likes: {{this.likes.length}}</p>
@@ -35,5 +37,32 @@
     <footer>
         <!-- Your footer content -->
     </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var iframes = document.querySelectorAll('iframe');
+        var widgets = [];
+
+        iframes.forEach(function(iframe) {
+            var widget = SC.Widget(iframe); // Initialize the widget for each iframe
+            widgets.push(widget);
+
+            // Example of using the widget API
+            widget.bind(SC.Widget.Events.PLAY, function() {
+                console.log('A track started playing!');
+            });
+        });
+
+        // Example function to play all widgets
+        function playAllWidgets() {
+            widgets.forEach(function(widget) {
+                widget.play();
+            });
+        }
+
+        // You can call playAllWidgets() to play all playlists, or add more controls as needed.
+    });
+    </script>
 </body>
 </html>
+

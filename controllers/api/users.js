@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
       req.session.username = newUser.username;
       req.session.loggedIn = true;
 
-      res.json(newUser);
+      res.redirect('/');
     });
   } catch (error) {
     res.status(500).json(error);
@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
     });
 
     if (!userData) {
-      res.status(400).json({ message: 'Incorrect username or password' });
+      res.redirect('/login?error=incorrect-credentials');
       return;
     }
 
@@ -40,7 +40,7 @@ router.post('/login', async (req, res) => {
     );
 
     if (!validPassword) {
-      res.status(400).json({ message: 'Incorrect username or password' });
+      res.redirect('/login?error=incorrect-credentials');
       return;
     }
 
@@ -49,22 +49,28 @@ router.post('/login', async (req, res) => {
       req.session.username = userData.username;
       req.session.loggedIn = true;
 
-      res.json({ user: userData, message: 'You are now logged in!' });
+      res.redirect('/');
     });
   } catch (error) {
     res.status(500).json(error);
   }
 });
 
-// POST /api/users/logout for user logout
-router.post('/logout', (req, res) => {
-  if (req.session.loggedIn) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
+// // GET /logout for user logout
+// router.get('/logout', (req, res) => {
+//   if (req.session.loggedIn) {
+//     req.session.destroy(err => {
+//       if (err) {
+//         console.error('Session destruction error:', err);
+//         return res.status(500).send('Could not log out, please try again.');
+//       }
+//       // Redirect to the home page or login page after successful logout
+//       res.redirect('/login'); 
+//     });
+//   } else {
+//     // If the user is not logged in, just redirect them
+//     res.redirect('/login'); 
+//   }
+// });
 
 module.exports = router;
