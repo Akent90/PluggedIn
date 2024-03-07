@@ -1,7 +1,7 @@
-const User = require('./user');
-const Playlist = require('./playlist');
-const Comment = require('./comment');
-const Likes = require('./likes');
+const User = require('./User');
+const Playlist = require('./Playlist');
+const Comment = require('./Comment');
+const Likes = require('./Likes');
 
 User.hasMany(Playlist, {
     foreignKey: 'userId',
