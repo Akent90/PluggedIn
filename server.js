@@ -10,7 +10,7 @@ const apiRoutes = require('./controllers/api');
 const webRoutes = require('./controllers');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Set up session with SequelizeStore
 const sess = {

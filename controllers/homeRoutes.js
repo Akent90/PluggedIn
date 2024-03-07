@@ -79,4 +79,14 @@ router.get('/playlists/:mood', withAuth, async (req, res) => {
     }
 });
 
+// GET login page
+router.get('/login', (req, res) => {
+    res.render('login'); 
+  });
+
+// GET signup page
+router.get('/signup', (req, res) => {
+    res.render('signup'); 
+  });
+
 module.exports = router;

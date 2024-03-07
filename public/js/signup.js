@@ -12,8 +12,8 @@ document.getElementById('signup-form').addEventListener('submit', async (event) 
       });
   
       if (response.ok) {
-        // Redirect to homepage or profile page after successful signup
-        document.location.replace('/profile');
+        // Redirect to homepage
+        document.location.replace('/homepage');
       } else {
         alert('Failed to sign up.');
       }
