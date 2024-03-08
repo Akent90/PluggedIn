@@ -56,21 +56,4 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// // GET /logout for user logout
-// router.get('/logout', (req, res) => {
-//   if (req.session.loggedIn) {
-//     req.session.destroy(err => {
-//       if (err) {
-//         console.error('Session destruction error:', err);
-//         return res.status(500).send('Could not log out, please try again.');
-//       }
-//       // Redirect to the home page or login page after successful logout
-//       res.redirect('/login'); 
-//     });
-//   } else {
-//     // If the user is not logged in, just redirect them
-//     res.redirect('/login'); 
-//   }
-// });
-
 module.exports = router;

@@ -22,7 +22,7 @@ Playlist.init({
         type: DataTypes.TEXT,
         allowNull: true
     },
-    soundcloudUrl: {
+    soundcloud_url: {
         type: DataTypes.STRING, 
         allowNull: false, 
         field: 'soundcloud_url',
