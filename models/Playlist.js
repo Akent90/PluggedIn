@@ -30,11 +30,11 @@ Playlist.init({
             isUrl: true
         }
     },
-    userId: {
+    user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'user',
+            model: 'User',
             key: 'id',
         }
     }
