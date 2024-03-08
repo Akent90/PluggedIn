@@ -4,9 +4,11 @@
     <h2>Choose Your Mood:</h2>
     <div class="mood-container">
       {{#each moods}}
-      <a href="/playlists/{{this}}" class="mood-box-link">
-        <div class="mood-box" data-mood="{{this}}">
-          <h3>{{this}}</h3>
+      <!-- Update the href to use the mood's name or a specific identifier -->
+      <a href="/playlists/{{this.name}}" class="mood-box-link">
+        <div class="mood-box" data-mood="{{this.name}}">
+          <!-- Ensure the mood's name is displayed inside the box -->
+          <h3>{{this.name}}</h3>
         </div>
       </a>
       {{/each}}

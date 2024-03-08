@@ -3,6 +3,7 @@ const Playlist = require('./Playlist');
 const Comment = require('./Comment');
 const Likes = require('./Likes');
 
+// User to Playlist Associations
 User.hasMany(Playlist, {
     foreignKey: 'userId',
     as: 'playlists'
@@ -12,6 +13,7 @@ Playlist.belongsTo(User, {
     as: 'user'
 });
 
+// Playlist to Comment Associations
 Playlist.hasMany(Comment, {
     foreignKey: 'playlistId',
     as: 'comments'
@@ -19,6 +21,16 @@ Playlist.hasMany(Comment, {
 Comment.belongsTo(Playlist, {
     foreignKey: 'playlistId', 
     as: 'playlist'
+});
+
+// User to Comment Association (Direct association between User and Comment)
+User.hasMany(Comment, {
+    foreignKey: 'userId',
+    as: 'userComments'
+});
+Comment.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user'
 });
 
 Playlist.hasMany(Likes, {

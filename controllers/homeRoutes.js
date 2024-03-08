@@ -106,5 +106,28 @@ router.get('/logout', (req, res) => {
     }
 });
 
+// // GET all playlists or a specific instruction page
+// router.get('/playlists/', withAuth, async (req, res) => {
+//     try {
+//         // Fetch all playlists, or render a specific view that guides the user on what to do next
+//         const playlistData = await Playlist.findAll({
+//             attributes: ['id', 'title', 'mood', 'description', 'soundcloud_url'],
+//             order: [['mood', 'ASC']]
+//         });
+
+//         const playlists = playlistData.map(playlist => playlist.get({ plain: true }));
+
+//         // You could render a page that lists all playlists, or redirects to a mood selection page
+//         res.render('all-playlists', {
+//             playlists,
+//             loggedIn: req.session.loggedIn
+//         });
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json(err);
+//     }
+// });
+
+
 module.exports = router;
 
